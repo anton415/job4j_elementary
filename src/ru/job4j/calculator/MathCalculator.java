@@ -9,12 +9,6 @@ public class MathCalculator {
                 + multiply(first, second);
     }
 
-    public static void main(String[] args) {
-        System.out.println("Результат расчета равен: " + sumAndMultiply(10, 20));
-        System.out.println("Результат расчета равен: " + subtractionAndDivision(10, 20));
-        System.out.println("Результат расчета равен: " + allFourOperation(10, 20));
-    }
-
     // будет считать сумму двух операций из класса MathFunction: разность двух чисел и деление двух чисел.
     public static double subtractionAndDivision(double first, double second) {
         return subtraction(first, second)
@@ -27,5 +21,11 @@ public class MathCalculator {
                 + division(first, second)
                 + sum(first, second)
                 + multiply(first, second);
+    }
+
+    public static void main(String[] args) {
+        System.out.println("Результат расчета равен: " + sumAndMultiply(10, 20));
+        System.out.println("Результат расчета равен: " + subtractionAndDivision(10, 20));
+        System.out.println("Результат расчета равен: " + allFourOperation(10, 20));
     }
 }
