@@ -4,7 +4,12 @@ public class MatrixCheck {
     public static boolean isWin(char[][] board) {
         // Поиск заполненной ячейки в диагонали
         char[] diagonal = extractDiagonal(board);
-        int index = getIndexOfCheckItemInDiagonal(diagonal);
+        int index = -1;
+        for (int i = 0; i < diagonal.length; i++) {
+            if ('X' == diagonal[i]) {
+                index = i;
+            }
+        }
         // Диагональ пустая
         if (index < 0) {
             return false;
@@ -14,15 +19,6 @@ public class MatrixCheck {
             return true;
         }
         return false;
-    }
-
-    public static int getIndexOfCheckItemInDiagonal(char[] diagonal) {
-        for (int i = 0; i < diagonal.length; i++) {
-            if ('X' == diagonal[i]) {
-                return i;
-            }
-        }
-        return -1;
     }
 
     public static char[] extractDiagonal(char[][] board) {
