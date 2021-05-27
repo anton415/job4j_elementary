@@ -2,21 +2,13 @@ package ru.job4j.array;
 
 public class MatrixCheck {
     public static boolean isWin(char[][] board) {
-        // Поиск заполненной ячейки в диагонали
         char[] diagonal = extractDiagonal(board);
-        int index = -1;
         for (int i = 0; i < diagonal.length; i++) {
             if ('X' == diagonal[i]) {
-                index = i;
+                if (monoHorizontal(board, i) || monoVertical(board, i)) {
+                    return true;
+                }
             }
-        }
-        // Диагональ пустая
-        if (index < 0) {
-            return false;
-        }
-        // Проверка строки и столбца данной диагонали
-        if (monoHorizontal(board, index) || monoVertical(board, index)) {
-            return true;
         }
         return false;
     }
