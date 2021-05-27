@@ -1,6 +1,30 @@
 package ru.job4j.array;
 
 public class MatrixCheck {
+    public static boolean isWin(char[][] board) {
+        // Поиск заполненной ячейки в диагонали
+        char[] diagonal = extractDiagonal(board);
+        int index = getIndexOfCheckItemInDiagonal(diagonal);
+        // Диагональ пустая
+        if (index < 0) {
+            return false;
+        }
+        // Проверка строки и столбца данной диагонали
+        if (monoHorizontal(board, index) || monoVertical(board, index)) {
+            return true;
+        }
+        return false;
+    }
+
+    public static int getIndexOfCheckItemInDiagonal(char[] diagonal) {
+        for (int i = 0; i < diagonal.length; i++) {
+            if ('X' == diagonal[i]) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
     public static char[] extractDiagonal(char[][] board) {
         char[] rsl = new char[board.length];
         for (int i = 0; i < board.length; i++) {
