@@ -4,10 +4,8 @@ public class MatrixCheck {
     public static boolean isWin(char[][] board) {
         char[] diagonal = extractDiagonal(board);
         for (int i = 0; i < diagonal.length; i++) {
-            if ('X' == diagonal[i]) {
-                if (monoHorizontal(board, i) || monoVertical(board, i)) {
-                    return true;
-                }
+            if ('X' == diagonal[i] && monoHorizontal(board, i) || monoVertical(board, i)) {
+                return true;
             }
         }
         return false;
