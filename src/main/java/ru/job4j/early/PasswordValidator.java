@@ -28,17 +28,9 @@ public class PasswordValidator {
      * @return Вернет пароль или выбросит исключение.
      */
     public static String validate(String password) {
-        if (password == null) {
-            throw new IllegalArgumentException("Password can't be null");
-        }
-        if (password.length() < 8 || password.length() > 32) {
-            throw new IllegalArgumentException("Password should be length [8, 32]");
-        }
-        for (String forbidden : FORBIDDEN_PASSWORDS) {
-            if (password.toLowerCase().contains(forbidden.toLowerCase())) {
-                throw new IllegalArgumentException("Password shouldn't contain substrings: qwerty, 12345, password, admin, user");
-            }
-        }
+        validateForEmptyPassword(password);
+        validatePasswordLength(password);
+        validateForbiddenPasswords(password);
 
         boolean hasUpCase = false;
         boolean hasLowCase = false;
@@ -71,5 +63,25 @@ public class PasswordValidator {
             throw new IllegalArgumentException("Password should contain at least one special symbol");
         }
         return password;
+    }
+
+    private static void validateForbiddenPasswords(String password) {
+        for (String forbidden : FORBIDDEN_PASSWORDS) {
+            if (password.toLowerCase().contains(forbidden.toLowerCase())) {
+                throw new IllegalArgumentException("Password shouldn't contain substrings: qwerty, 12345, password, admin, user");
+            }
+        }
+    }
+
+    private static void validatePasswordLength(String password) {
+        if (password.length() < 8 || password.length() > 32) {
+            throw new IllegalArgumentException("Password should be length [8, 32]");
+        }
+    }
+
+    private static void validateForEmptyPassword(String password) {
+        if (password == null) {
+            throw new IllegalArgumentException("Password can't be null");
+        }
     }
 }
