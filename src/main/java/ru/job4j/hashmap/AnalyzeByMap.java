@@ -50,15 +50,9 @@ public class AnalyzeByMap {
         List<Label> listWithAverageScoreBySubject = new LinkedList<>();
         Map<String, Integer> totalScoreBySubject = new LinkedHashMap<>();
         for (Pupil pupil : pupils) {
-            List<Subject> subjects = pupil.subjects();
-            for (Subject subject : subjects) {
-                if (totalScoreBySubject.containsKey(subject.name())) {
-                    int score = totalScoreBySubject.get(subject.name());
-                    score += subject.score();
-                    totalScoreBySubject.replace(subject.name(), score);
-                } else {
-                    totalScoreBySubject.put(subject.name(), subject.score());
-                }
+            for (Subject subject : pupil.subjects()) {
+                int score = totalScoreBySubject.getOrDefault(subject.name(), 0) + subject.score();
+                totalScoreBySubject.put(subject.name(), score);
             }
         }
         for (Map.Entry<String, Integer> stringIntegerEntry : totalScoreBySubject.entrySet()) {
@@ -95,15 +89,9 @@ public class AnalyzeByMap {
         List<Label> listWithTotalScoreBySubject = new LinkedList<>();
         Map<String, Integer> totalScoreBySubject = new LinkedHashMap<>();
         for (Pupil pupil : pupils) {
-            List<Subject> subjects = pupil.subjects();
-            for (Subject subject : subjects) {
-                if (totalScoreBySubject.containsKey(subject.name())) {
-                    int score = totalScoreBySubject.get(subject.name());
-                    score += subject.score();
-                    totalScoreBySubject.replace(subject.name(), score);
-                } else {
-                    totalScoreBySubject.put(subject.name(), subject.score());
-                }
+            for (Subject subject : pupil.subjects()) {
+                int score = totalScoreBySubject.getOrDefault(subject.name(), 0) + subject.score();
+                totalScoreBySubject.put(subject.name(), score);
             }
         }
         for (Map.Entry<String, Integer> stringIntegerEntry : totalScoreBySubject.entrySet()) {
